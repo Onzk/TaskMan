@@ -1,1 +1,1 @@
-# Tasky - Python GUI Task Manager
+# TaskMan - Python GUI Task Manager
