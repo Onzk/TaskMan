@@ -1,4 +1,1 @@
-customtkinter
-darkdetect
-Pillow
-CTkTable
+Flask
