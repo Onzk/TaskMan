@@ -10,8 +10,8 @@ function createSquare() {
     var size = Math.random() * 50;
     square.style.width = 20 + size + 'px';
     square.style.height = 20 + size + 'px';
-    square.style.top = Math.random() * (innerHeight - size ) + 'px';
-    square.style.left = Math.random() * (innerWidth - size / 2) + 'px';
+    square.style.top = (Math.random() * innerHeight) + 'px';
+    square.style.left = (Math.random() * innerWidth) + 'px';
     square.style.background = colors[Math.floor(Math.random() * colors.length)];
     square.style.borderRadius = size / 8 + "px";
     square.style.zIndex = 0;
