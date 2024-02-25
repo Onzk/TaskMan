@@ -1,0 +1,33 @@
+<button id="dropdown-button"
+    class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white rounded-md shadow-md focus:shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
+        class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+    </svg>
+</button>
+<div id="dropdown-menu" style="z-index: 120;"
+    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+    <div class="py-2 p-2" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-button">
+        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            role="menuitem">
+            Default (no sort)
+        </a>
+        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            role="menuitem">
+            Upper priority
+        </a>
+        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            role="menuitem">
+            Lower priority
+        </a>
+        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            role="menuitem">
+            Closer deadline
+        </a>
+        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            role="menuitem">
+            Far deadline
+        </a>
+    </div>
+</div>

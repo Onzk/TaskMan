@@ -3,165 +3,52 @@
 
 <head>
     <title>TaskMan</title>
-    <link rel="icon" type="image/x-icon"
-        href="{{ url_for('static', filename='assets/main-logo.png') }}">
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='styles/main.css') }}" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/main-logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <script src="{{ url_for('static', filename='styles/tailwind.css') }}"></script>
 </head>
 
 <body class="w-full">
-    <div class="p-16 h-screen w-full">
+
+    <div class="px-32 py-16 h-screen w-full">
         <div class="h-full bg-white border overflow-hidden flex flex-col rounded-xl overflow-hidden shadow-lg">
             <!-- navbar -->
-            <div class="border-b px-5 py-3 flex justify-between items-center">
-                <span class="flex items-center">
-                    <img src="{{ url_for('static', filename='assets/main-logo.png') }}"
-                        width="40" alt="">
-                    <span class="font-bold text-gray-500 text-xl">
-                        TaskMan
-                    </span>
-                </span>
-                <!-- search -->
-                <div class="w-1/2 relative focus-within:rounded-lg">
-                    <div
-                        class="flex items-center w-full border border-transparent focus-within:border-gray-200 focus-within:rounded-lg px-3 py-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 stroke-slate-500 mr-5" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        <input type="text" placeholder="Search.."
-                            class="w-full outline-none placeholder:text-slate-500 font-semibold" />
-                    </div>
-                </div>
-                <!-- order -->
-                <div class="relative inline-block text-left">
-                    <button id="dropdown-button"
-                        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-                        </svg>
-                    </button>
-                    <div id="dropdown-menu"
-                        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
-                        <div class="py-2 p-2" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-button">
-                            <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-                                role="menuitem">
-                                Default (no sort)
-                            </a>
-                            <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-                                role="menuitem">
-                                Upper priority 
-                            </a>
-                            <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-                                role="menuitem">
-                                Lower priority
-                            </a>
-                            <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-                                role="menuitem">
-                                Closer deadline
-                            </a>
-                            <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-                                role="menuitem">
-                                Far deadline
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% include 'parts/navbar.html' %}
             <!-- body -->
-            <div class="h-full flex overflow-auto">
+            <div class="h-full flex overflow-auto relative">
                 <!-- slidebar 1 -->
-                <div class="h-full w-64 border-r pt-10 " style="overflow-y: auto; scrollbar-width: none">
-                    <div class="w-full px-5">
-                        <p class="text-xs font-medium text-gray-400">DEFAULT</p>
-                        <!-- menu-item -->
-                        <div
-                            class="mt-4 py-1.5 text-sm font-medium text-slate-500 hover:text-blue-500 group cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="h-5 stroke-slate-400 mr-4 group-hover:stroke-blue-500">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" />
-                            </svg>
-
-                            ALL TASKS (5)
-                        </div>
-                        <div
-                            class="mt-4 py-1.5 text-sm font-medium text-slate-500 hover:text-blue-500 group cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="h-5 stroke-slate-400 mr-4 group-hover:stroke-blue-500">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                            </svg>
-                            COMPLETED (5)
-                        </div>
-                        <div
-                            class="mt-4 py-1.5 text-sm font-medium text-slate-500 hover:text-blue-500 group cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 stroke-slate-400 mr-4 group-hover:stroke-blue-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636" />
-                            </svg>
-
-                            REMAINING (5)
-                        </div>
-
-                        <p class="text-xs font-medium text-gray-400 mt-8">CATEGORIES</p>
-                        
-                        {% include 'modules/category.html' %}
-                        {% include 'modules/category.html' %}
-                        {% include 'modules/category.html' %}
-                        <div
-                            class="mt-4 py-1.5 text-sm font-medium text-blue-500 group cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="h-5 mr-4 stroke-blue-500">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
-                            </svg>
-                            Messages
-                        </div>
-                    </div>
-                    <button
-                        class="mt-4 w-full py-2 hover:bg-blue-400 transition duration-200 text-sm text-white font-medium bg-blue-500 group cursor-pointer flex items-center">
-                        <span class="pl-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="h-5 mr-4 stroke-white">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                        </span>
-                        New category
-                    </button>
-                </div>
+                {% include 'parts/sidebar.html' %}
                 <!-- sidebar 2 -->
-                <div class="h-full w-full bg-slate-50 border-r flex flex-col">
-                    <div class="h-16 border-b px-4 flex items-center justify-center space-x-4">
-                        <div class="px-4 py-4 border-b-4 border-b-blue-500">All</div>
-                        <div class="px-4 py-4">COMPLETED</div>
-                        <div class="px-4 py-4">REMAINING</div>
+                <!-- main -->
+                <div class="h-full w-full bg-white border-r flex flex-col relative">
+                    {% include 'components/category_form.html' %}
+                    <div
+                        class="h-16 border-b text-sm font-medium text-slate-500 px-4 flex items-center justify-center space-x-4">
+                        <a href="/sub_status/all" {% if sub_status=="all" %}
+                            class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
+                            %}>All</a>
+                        <a href="/sub_status/completed" {% if sub_status=="completed" %}
+                            class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
+                            %}>COMPLETED</a>
+                        <a href="/sub_status/remaining" {% if sub_status=="remaining" %}
+                            class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
+                            %}>REMAINING</a>
                     </div>
-                    <div class="h-full w-full" style="overflow-y: auto;">
-                        {% include 'modules/task.html' %}
-                        {% include 'modules/task.html' %}
-                        {% include 'modules/task.html' %}
-                        <div
-                            class="px-5 py-4 flex items-center cursor-pointer border-l-4 border-l-transparent hover:bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHVzZXJzfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500 "
-                                class="h-12 w-12 border-2 border-white rounded-full" alt="" />
-                            <div class="ml-4">
-                                <p x-text="user.name" class="text-md font-semibold text-slate-600 m-0 p-0">
-                                    Alison Alison
-                                </p>
-                                <p class="text-xs text-slate-400 -mt-0.5 font-semibold" x-text="user.email">
-                                    Hello
-                                </p>
-                            </div>
+                    <div class="h-full w-full relative" style="overflow-y: auto;">
+                        {% if tasks == [] %}
+                        <div class="w-full h-full text-center">
+                            <img src="{{ url_for('static', filename='assets/empty.png') }}"
+                                class="h-3/4 mx-auto pt-16 text-center" alt="">
+                            <span class="text-sm font-medium text-slate-500">Great! No task found!</span>
                         </div>
-
-                        <div
+                        {% else %}
+                        {% for task in tasks %}
+                        {% with task=task %}
+                        {% include 'components/task.html' %}
+                        {% endwith %}
+                        {% endfor %}
+                        {% endif %}
+                        <!-- <div
                             class="px-5 py-4 flex items-center bg-white cursor-pointer border-l-4 border-l-blue-500 border-t border-b">
                             <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500 "
                                 class="h-12 w-12 border-2 border-white rounded-full" alt="" />
@@ -173,70 +60,35 @@
                                     Ok, Thanks.
                                 </p>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div
-                            class="px-5 py-4 flex items-center cursor-pointer border-l-4 border-l-transparent hover:bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500"
-                                class="h-12 w-12 border-2 border-white rounded-full" alt="" />
-                            <div class="ml-4">
-                                <p x-text="user.name" class="text-md font-semibold text-slate-600 m-0 p-0">
-                                    Uran Poland
-                                </p>
-                                <p class="text-xs text-slate-400 -mt-0.5 font-semibold" x-text="user.email">
-                                    We own hidden lake..
-                                </p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="px-5 py-4 flex items-center cursor-pointer border-l-4 border-l-transparent hover:bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJzfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500"
-                                class="h-12 w-12 border-2 border-white rounded-full" alt="" />
-                            <div class="ml-4">
-                                <p x-text="user.name" class="text-md font-semibold text-slate-600 m-0 p-0">
-                                    Yaroslav Zubkp
-                                </p>
-                                <p class="text-xs text-slate-400 -mt-0.5 font-semibold" x-text="user.email">
-                                    is is long ipsum avaliable...
-                                </p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="px-5 py-4 flex items-center cursor-pointer border-l-4 border-l-transparent hover:bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1499887142886-791eca5918cd?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHVzZXJzfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500 "
-                                class="h-12 w-12 border-2 border-white rounded-full" alt="" />
-                            <div class="ml-4">
-                                <p x-text="user.name" class="text-md font-semibold text-slate-600 m-0 p-0">
-                                    Alison Alison
-                                </p>
-                                <p class="text-xs text-slate-400 -mt-0.5 font-semibold" x-text="user.email">
-                                    Hello
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- else -->
-                        <div class="w-full px-5 py-3">
+                            class="absolute bottom-0 right-0 p-4 group  flex items-end justify-end w-24 h-24 hover:w-48 hover:h-48">
                             <div
-                                class="h-12 flex justify-between px-3 items-center border border-transparent bg-slate-50 focus-within:border-slate-300 rounded-lg">
-                                <input type="text"
-                                    class="w-full px-3 bg-transparent outline-none placeholder:text-slate-400"
-                                    placeholder="Type your message" />
-                                <div class="flex items-center space-x-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 stroke-slate-300" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                                    </svg>
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 stroke-slate-300" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
+                                class="text-white shadow-xl cursor-pointer hover:scale-105 flex items-center justify-center p-3 rounded-full bg-gradient-to-r bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 from-cyan-500 to-blue-500 z-50 absolute  ">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    class="w-6 h-6 group-hover:rotate-90 transition text-white transition-all duration-[0.6s]">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                            </div>
+                            <!-- sub left -->
+                            <div onclick="modalHandler(true)"
+                                class="absolute rounded-full transition-all cursor-pointer duration-[0.2s] ease-out scale-y-0 group-hover:scale-y-100 group-hover:-translate-x-16   flex  p-2 hover:p-3 bg-yellow-300 scale-100 hover:bg-yellow-400 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+                                </svg>
+                            </div>
+                            <!-- sub top -->
+                            <div
+                                class="absolute rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16  flex  p-2 hover:p-3 bg-blue-300 hover:bg-blue-400  text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -245,10 +97,13 @@
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='scripts/modal.js') }}">
+    </script>
     <script src="{{ url_for('static', filename='scripts/main.js') }}">
     </script>
     <script src="{{ url_for('static', filename='scripts/dropdown.js') }}">
     </script>
+    <script src="{{ url_for('static', filename='scripts/alpine.js') }}"></script>
 </body>
 
 </html>
