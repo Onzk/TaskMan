@@ -9,24 +9,39 @@
 <div id="dropdown-menu" style="z-index: 120;"
     class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
     <div class="py-2 p-2" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-button">
-        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
-            role="menuitem">
+        <a href="/sort/default" {% if sort=="default" %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
+            {% else %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            {% endif %} role="menuitem">
             Default (no sort)
         </a>
-        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
-            role="menuitem">
+        <a href="/sort/upper_priority" {% if sort=="upper_priority" %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
+            {% else %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            {% endif %} role="menuitem">
             Upper priority
         </a>
-        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
-            role="menuitem">
+        <a href="/sort/lower_priority" {% if sort=="lower_priority" %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
+            {% else %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            {% endif %} role="menuitem">
             Lower priority
         </a>
-        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
-            role="menuitem">
+        <a href="/sort/closer_deadline" {% if sort=="closer_deadline" %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
+            {% else %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            {% endif %} role="menuitem">
             Closer deadline
         </a>
-        <a class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
-            role="menuitem">
+        <a href="/sort/far_deadline" {% if sort=="far_deadline" %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
+            {% else %}
+            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
+            {% endif %} role="menuitem">
             Far deadline
         </a>
     </div>

@@ -23,7 +23,7 @@
                 <div class="h-full w-full bg-white border-r flex flex-col relative">
                     {% include 'components/category_form.html' %}
                     <div
-                        class="h-16 border-b text-sm font-medium text-slate-500 px-4 flex items-center justify-center space-x-4">
+                        class="h-16 text-sm font-medium text-slate-500 px-4 flex items-center justify-center space-x-4">
                         <a href="/sub_status/all" {% if sub_status=="all" %}
                             class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
                             %}>All</a>
@@ -38,7 +38,7 @@
                         {% if tasks == [] %}
                         <div class="w-full h-full text-center">
                             <img src="{{ url_for('static', filename='assets/empty.png') }}"
-                                class="h-3/4 mx-auto pt-16 text-center" alt="">
+                                class="h-3/4 mx-auto pr-16 pt-16 text-center" alt="">
                             <span class="text-sm font-medium text-slate-500">Great! No task found!</span>
                         </div>
                         {% else %}
@@ -97,13 +97,12 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='scripts/modal.js') }}">
+    <script src="{{ url_for('static', filename='/scripts/modal.js') }}">
     </script>
-    <script src="{{ url_for('static', filename='scripts/main.js') }}">
+    <script src="{{ url_for('static', filename='/scripts/main.js') }}">
     </script>
-    <script src="{{ url_for('static', filename='scripts/dropdown.js') }}">
+    <script src="{{ url_for('static', filename='/scripts/dropdown.js') }}">
     </script>
-    <script src="{{ url_for('static', filename='scripts/alpine.js') }}"></script>
 </body>
 
 </html>

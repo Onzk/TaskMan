@@ -1,3 +1,14 @@
+var inputs = document.getElementsByClassName("category-input");
+
+Array.prototype.forEach.call(inputs, function (element) {
+    element.addEventListener("keypress", function (event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            element.form.submit();
+        }
+    });
+});
+
 const colors = [
     '#2196f3',
     '#e91e63',

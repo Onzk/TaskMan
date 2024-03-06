@@ -8,40 +8,63 @@ app = Flask(__name__)
 task_list, task_file, task_stack = [], SimpleQueue(), LifoQueue
 
 sub_status = "all"
+sort_by = "default"
 
 categories = []
 
 
 task_list.append(Task("Aller bosser", "20 Janvier"))
 
-@app.route("/")
-def home():
-    return render_template("index.html", tasks=task_list, categories=categories, sub_status=sub_status)
 
-@app.route("/<section>")
-def index(section:str = ""):
-    path = section if section.lower() in ["", "completed", "all", "remaining"] else ""
-    
-    if path == "completed":
+@app.route("/")
+def index():
+    if sub_status == "completed":
         tasks = [task for task in task_list if task.completed]
-    elif path == "remaining":
+    elif sub_status == "remaining":
         tasks = [task for task in task_list if not task.completed]
-    else :
+    else:
         tasks = task_list
-    print(categories)
-    return render_template("index.html", tasks=tasks, categories=categories, sub_status=sub_status)
+
+    return render_template(
+        "index.html",
+        tasks=tasks,
+        categories=categories,
+        sub_status=sub_status,
+        sort=sort_by,
+    )
+
 
 @app.route("/sub_status/<status>")
-def change_sub_status(status:str = ""):
-    global sub_status 
+def change_sub_status(status: str = ""):
+    global sub_status
     sub_status = status if status.lower() in ["completed", "remaining"] else "all"
-    return redirect('/')
+    return redirect(request.referrer)
+
+
+@app.route("/sort/<sort>")
+def change_sort(sort: str = ""):
+    global sort_by
+    sort_by = (
+        sort
+        if sort.lower()
+        in [
+            "default",
+            "upper_priority",
+            "lower_priority",
+            "closer_deadline",
+            "far_deadline",
+        ]
+        else "default"
+    )
+    return redirect(request.referrer)
+
 
 @app.route("/create", methods=["POST"])
 def create():
     name = request.form["name"]
     task_list.append(name)
     return redirect("/")
+
 
 @app.route("/update", methods=["POST"])
 def update():
@@ -52,12 +75,28 @@ def update():
         task_list[index] = new_name
     return redirect("/")
 
+
 @app.route("/delete", methods=["POST"])
 def delete():
     name = request.form["name"]
     if name in task_list:
         task_list.remove(name)
     return redirect("/")
+
+@app.route("/category", methods=["POST"])
+def add_category():
+    categories.add(request.form["name"])
+    return redirect("/")
+    
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('./errors/404.html'), 404
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('./errors/500.html'), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
