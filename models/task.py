@@ -1,34 +1,60 @@
+import uuid
+
+
 class Task:
-    
-    def __init__(self, description:str, deadline:str, priority: int = 1, completed:bool = False) -> None:
+
+    priorityParser: list = [
+        ("VERY LOW", "primary"),
+        ("LOW", "info"),
+        ("NORMAL", "primary"),
+        ("HIGH", "warning"),
+        ("CRITICAL", "error"),
+    ]
+
+    def __init__(
+        self,
+        description: str,
+        deadline: str,
+        priority: int = 1,
+        completed: bool = False,
+    ) -> None:
+        self.__id = str(uuid.uuid4()).replace('-', '_')
         self.description = description
-        self.deadline = deadline
+        self.deadline = deadline.replace('T', ' ')
         self.priority = priority
         self.completed = completed
-        
+
+    @property
+    def id(self) -> str:
+        return self.__id
+
+    @id.setter
+    def id(self, id: str) -> None:
+        raise Exception('Unable to change a task id.')
+
     @property
     def description(self) -> str:
         return self.__description
 
     @description.setter
-    def description(self, description:str) -> None:
+    def description(self, description: str) -> None:
         self.__description = description
-   
+
     @property
     def deadline(self) -> str:
         return self.__deadline
 
     @deadline.setter
-    def deadline(self, deadline:str) -> None:
+    def deadline(self, deadline: str) -> None:
         self.__deadline = deadline
-   
+
     @property
     def priority(self) -> int:
         return self.__priority
 
     @priority.setter
-    def priority(self, priority:int) -> None:
-        self.__priority = min(max(priority, 1), 4)
-        
-   
-        
+    def priority(self, priority: int) -> None:
+        self.__priority = min(max(priority, 1), 5)
+
+    def parsePriority(self) -> tuple:
+        return Task.priorityParser[self.__priority - 1]

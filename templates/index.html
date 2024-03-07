@@ -3,38 +3,39 @@
 
 <head>
     <title>TaskMan</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/main-logo.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
-    <script src="{{ url_for('static', filename='styles/tailwind.css') }}"></script>
+    <link rel="icon" type="image/x-icon"
+        href="{{ url_for('static', filename='assets/main-logo.png') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='styles/main.css') }}" />
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='styles/daysi.css') }}" />
+    <script src="{{ url_for('static', filename='styles/tailwind.css') }}">
+    </script>
 </head>
 
 <body class="w-full">
 
-    <div class="px-32 py-16 h-screen w-full">
-        <div class="h-full bg-white border overflow-hidden flex flex-col rounded-xl overflow-hidden shadow-lg">
-            <!-- navbar -->
-            {% include 'parts/navbar.html' %}
-            <!-- body -->
+    <div class="md:px-16 md:py-16 md:pb-32 h-screen w-full">
+        {% include 'parts/navbar.html' %}
+        <div class="h-full backdrop-blur-sm mt-2 overflow-hidden flex flex-col rounded-md overflow-hidden shadow-lg">
             <div class="h-full flex overflow-auto relative">
-                <!-- slidebar 1 -->
-                {% include 'parts/sidebar.html' %}
-                <!-- sidebar 2 -->
-                <!-- main -->
-                <div class="h-full w-full bg-white border-r flex flex-col relative">
-                    {% include 'components/category_form.html' %}
+                <div class="h-full w-full flex flex-col relative">
                     <div
-                        class="h-16 text-sm font-medium text-slate-500 px-4 flex items-center justify-center space-x-4">
+                        class="h-16 text-sm font-medium text-slate-300 px-4 flex items-center justify-center space-x-4">
                         <a href="/sub_status/all" {% if sub_status=="all" %}
-                            class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
+                            class="px-4 py-4 border-b-4 border-b-blue-400 rounded w-32 text-center" {% else %}
+                            class="px-4 py-4 hover:rounded hover:bg-base-200/50 w-32 text-center" {% endif
                             %}>All</a>
                         <a href="/sub_status/completed" {% if sub_status=="completed" %}
-                            class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
+                            class="px-4 py-4 border-b-4 border-b-blue-400 rounded w-32 text-center" {% else %}
+                            class="px-4 py-4 hover:rounded hover:bg-base-200/50 w-32 text-center" {% endif
                             %}>COMPLETED</a>
                         <a href="/sub_status/remaining" {% if sub_status=="remaining" %}
-                            class="px-4 py-4 border-b-4 border-b-blue-500" {% else %} class="px-4 py-4" {% endif
+                            class="px-4 py-4 border-b-4 border-b-blue-400 rounded w-32 text-center" {% else %}
+                            class="px-4 py-4 hover:rounded hover:bg-base-200/50 w-32 text-center" {% endif
                             %}>REMAINING</a>
                     </div>
-                    <div class="h-full w-full relative" style="overflow-y: auto;">
+                    <div class="h-full w-full pt-3" style="overflow-y: auto;">
                         {% if tasks == [] %}
                         <div class="w-full h-full text-center">
                             <img src="{{ url_for('static', filename='assets/empty.png') }}"
@@ -42,66 +43,19 @@
                             <span class="text-sm font-medium text-slate-500">Great! No task found!</span>
                         </div>
                         {% else %}
-                        {% for task in tasks %}
-                        {% with task=task %}
-                        {% include 'components/task.html' %}
-                        {% endwith %}
-                        {% endfor %}
+                        {% include 'components/category/default_category.html' %}
                         {% endif %}
-                        <!-- <div
-                            class="px-5 py-4 flex items-center bg-white cursor-pointer border-l-4 border-l-blue-500 border-t border-b">
-                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500 "
-                                class="h-12 w-12 border-2 border-white rounded-full" alt="" />
-                            <div class="ml-4">
-                                <p x-text="user.name" class="text-md font-semibold text-slate-600 m-0 p-0">
-                                    Mircel Jones
-                                </p>
-                                <p class="text-xs text-slate-400 -mt-0.5 font-semibold" x-text="user.email">
-                                    Ok, Thanks.
-                                </p>
-                            </div>
-                        </div> -->
-
-                        <div
-                            class="absolute bottom-0 right-0 p-4 group  flex items-end justify-end w-24 h-24 hover:w-48 hover:h-48">
-                            <div
-                                class="text-white shadow-xl cursor-pointer hover:scale-105 flex items-center justify-center p-3 rounded-full bg-gradient-to-r bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 from-cyan-500 to-blue-500 z-50 absolute  ">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor"
-                                    class="w-6 h-6 group-hover:rotate-90 transition text-white transition-all duration-[0.6s]">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                            </div>
-                            <!-- sub left -->
-                            <div onclick="modalHandler(true)"
-                                class="absolute rounded-full transition-all cursor-pointer duration-[0.2s] ease-out scale-y-0 group-hover:scale-y-100 group-hover:-translate-x-16   flex  p-2 hover:p-3 bg-yellow-300 scale-100 hover:bg-yellow-400 text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
-                                </svg>
-                            </div>
-                            <!-- sub top -->
-                            <div
-                                class="absolute rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16  flex  p-2 hover:p-3 bg-blue-300 hover:bg-blue-400  text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                                </svg>
-                            </div>
-                        </div>
+                        {% include 'components/add_btn.html' %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="{{ url_for('static', filename='/scripts/modal.js') }}">
-    </script>
+    {% include "components/toast.html" %}
     <script src="{{ url_for('static', filename='/scripts/main.js') }}">
     </script>
-    <script src="{{ url_for('static', filename='/scripts/dropdown.js') }}">
+    <script
+        src="{{ url_for('static', filename='/scripts/dropdown.js') }}">
     </script>
 </body>
 

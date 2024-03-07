@@ -1,19 +1,7 @@
-from flask import Flask, render_template, request, redirect
-from queue import SimpleQueue, LifoQueue
-
-from models.task import Task
-
-app = Flask(__name__)
-
-task_list, task_file, task_stack = [], SimpleQueue(), LifoQueue
-
-sub_status = "all"
-sort_by = "default"
-
-categories = []
-
-
-task_list.append(Task("Aller bosser", "20 Janvier"))
+from server import *
+from routes.task import *
+from routes.category import *
+from routes.error import *
 
 
 @app.route("/")
@@ -58,45 +46,6 @@ def change_sort(sort: str = ""):
     )
     return redirect(request.referrer)
 
-
-@app.route("/create", methods=["POST"])
-def create():
-    name = request.form["name"]
-    task_list.append(name)
-    return redirect("/")
-
-
-@app.route("/update", methods=["POST"])
-def update():
-    old_name = request.form["old_name"]
-    new_name = request.form["new_name"]
-    if old_name in task_list:
-        index = task_list.index(old_name)
-        task_list[index] = new_name
-    return redirect("/")
-
-
-@app.route("/delete", methods=["POST"])
-def delete():
-    name = request.form["name"]
-    if name in task_list:
-        task_list.remove(name)
-    return redirect("/")
-
-@app.route("/category", methods=["POST"])
-def add_category():
-    categories.add(request.form["name"])
-    return redirect("/")
-    
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('./errors/404.html'), 404
-
-@app.errorhandler(500)
-def page_not_found(e):
-    return render_template('./errors/500.html'), 500
 
 if __name__ == "__main__":
     app.run(debug=True)

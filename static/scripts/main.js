@@ -1,13 +1,6 @@
-var inputs = document.getElementsByClassName("category-input");
-
-Array.prototype.forEach.call(inputs, function (element) {
-    element.addEventListener("keypress", function (event) {
-        // If the user presses the "Enter" key on the keyboard
-        if (event.key === "Enter") {
-            element.form.submit();
-        }
-    });
-});
+function openModal(id) {
+    window[id].showModal();
+}
 
 const colors = [
     '#2196f3',
@@ -15,6 +8,7 @@ const colors = [
     '#ffeb3b',
     '#74ff1d',
 ];
+
 function createSquare() {
     const section = document.getElementById('main');
     const square = document.createElement('span');

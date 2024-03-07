@@ -1,0 +1,30 @@
+<div
+    class="absolute bottom-0 right-0 p-5 group flex items-end justify-end w-24 h-24 hover:w-48 hover:h-48 hover:backdrop-blur-sm hover:bg-base-200 rounded-tl-full">
+    <div
+        class="text-white shadow-xl cursor-pointer hover:scale-105 flex items-center justify-center p-3 rounded-full bg-gradient-to-r bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 from-cyan-500 to-blue-500 z-50 absolute  transition-all duration-[0.6s]">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6 group-hover:rotate-90 transition text-white transition-all duration-[0.6s]">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+    </div>
+    <!-- sub left -->
+    <div onclick="add_category_form.showModal()"
+        class="absolute rounded-full transition-all cursor-pointer duration-[0.2s] ease-out scale-y-0 group-hover:scale-y-100 group-hover:-translate-x-16   flex  p-2 hover:p-3 bg-base-200 scale-100 hover:text-blue-400 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
+        </svg>
+    </div>
+    {% include 'components/category/add_category_form.html' %}
+    <!-- sub top -->
+    <div onclick="add_task_form.showModal()"
+        class="absolute cursor-pointer rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16 flex p-2 hover:p-3 bg-base-200 hover:text-blue-400 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+        </svg>
+    </div>
+    {% include 'components/task/add_task_form.html' %}
+</div>

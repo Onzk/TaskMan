@@ -1,0 +1,20 @@
+<div class="px-3 pb-3 flex items-start justify-start">
+    <button  class="text z-50 text-info py-5 h-full mx-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+        </svg>
+    </button>
+    <div class="collapse collapse-arrow bg-black/20 rounded-md transition-all duration-500">
+        <input type="checkbox" checked />
+        <div class="collapse-title flex items-center text-xl font-medium">
+            Install linux server
+        </div>
+        <div class="collapse-content">
+            {% include 'components/task/task.html' %}
+            {% include 'components/category/sub_category.html' %}
+            {% include 'components/category/sub_category.html' %}
+        </div>
+    </div>
+</div>
