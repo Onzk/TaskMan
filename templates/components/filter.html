@@ -1,0 +1,14 @@
+<div class="h-16 text-sm font-medium text-slate-300 px-4 flex items-center justify-center space-x-4">
+    <a href="/sub_status/all" {% if sub_status=="all" %}
+        class="px-4 py-4 border-b-4 border-b-blue-400 rounded w-32 text-center" {% else %}
+        class="px-4 py-4 hover:rounded hover:bg-base-200/50 w-32 text-center" {% endif
+                            %}>All</a>
+    <a href="/sub_status/completed" {% if sub_status=="completed" %}
+        class="px-4 py-4 border-b-4 border-b-blue-400 rounded w-32 text-center" {% else %}
+        class="px-4 py-4 hover:rounded hover:bg-base-200/50 w-32 text-center" {% endif
+                            %}>COMPLETED</a>
+    <a href="/sub_status/remaining" {% if sub_status=="remaining" %}
+        class="px-4 py-4 border-b-4 border-b-blue-400 rounded w-32 text-center" {% else %}
+        class="px-4 py-4 hover:rounded hover:bg-base-200/50 w-32 text-center" {% endif
+                            %}>REMAINING</a>
+</div>

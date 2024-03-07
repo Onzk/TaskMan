@@ -1,12 +1,12 @@
 <div class="px-3 pb-3 flex items-start justify-start">
-    <button  class="text z-50 text-info py-5 h-full mx-3">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-            stroke="currentColor" class="w-6 h-6">
+    <button class="text z-50 text-info py-5 h-full mx-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
         </svg>
     </button>
-    <div class="collapse collapse-arrow bg-base-200/20 rounded-md">
+    <div class="collapse collapse-arrow bg-base-200/20 rounded-md transition-all duration-500">
         <input type="checkbox" checked />
         <div class="collapse-title flex items-center text-xl font-medium">
             <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -17,9 +17,20 @@
             Install linux server
         </div>
         <div class="collapse-content">
-            {% include 'components/task/task.html' %}
-            {% include 'components/task/task.html' %}
-            {% include 'components/task/task.html' %}
+
+            {% with tasks=category.tasks %}
+            {% if tasks == [] %}
+            <span class="pl-8 text-sm">
+                - 🎉 no task found 🎉 -
+            </span>
+            {% else %}
+            {% for task in tasks %}
+            {% with task=task %}
+            <!-- {% include 'components/task/task.html' %} -->
+            {% endwith %}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
         </div>
     </div>
 </div>

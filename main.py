@@ -16,7 +16,7 @@ def index():
     return render_template(
         "index.html",
         tasks=tasks,
-        categories=categories,
+        categories=root.sub_categories,
         sub_status=sub_status,
         sort=sort_by,
     )

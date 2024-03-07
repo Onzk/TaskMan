@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, flash
 from queue import SimpleQueue, LifoQueue
 
 from models.task import Task
+from models.category import Category
 
 app = Flask(__name__)
 
@@ -13,4 +14,4 @@ sub_status = "all"
 
 sort_by = "default"
 
-categories = []
+root = Category("root")

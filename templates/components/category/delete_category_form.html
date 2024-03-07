@@ -1,0 +1,14 @@
+<dialog id="delete{{ category.id }}category" class="modal backdrop-blur-sm sm:modal-middle">
+    <div class="modal-box bg-base-200/50 border-l-4 border-red-500 rounded">
+        <h3 class="font-bold text-lg">Warning</h3>
+        <p class="py-4">Do you really want to delete this category ?</p>
+        <div class="modal-action">
+            <form action="/delete-category/{{ category.id }}" method="POST">
+                <button class="btn btn-error">Delete</button>
+            </form>
+            <form method="dialog">
+                <button class="btn">Cancel</button>
+            </form>
+        </div>
+    </div>
+</dialog>
