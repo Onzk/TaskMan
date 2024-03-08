@@ -1,0 +1,23 @@
+<form action="/update-sub-category/{{ category.id }}/{{ sub_category.id }}" method="POST">
+    <dialog id="edit{{ sub_category.id }}sub_category" class="modal backdrop-blur-sm">
+        <div class="modal-box bg-base-200/50 border-l-4 border-blue-500 rounded">
+            <form method="dialog">
+                <button class="btn hidden btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="font-bold text-lg mt-5 mb-8">Update sub category</h3>
+            <label class="input input-bordered flex items-center gap-2">
+                <input type="text" class="grow" name="description" value="{{ sub_category.description }}"
+                    placeholder="Give a new name to the sub category" required minlength="3" />
+            </label>
+            <div class="flex items-center justify-start pt-5 w-full">
+                <button type="submit"
+                    class="btn transition duration-250 ease-in-out text-gray-700 rounded-md text-white bg-gradient-to-r to-cyan-500 from-blue-500 hover:to-cyan-600 hover:from-blue-600 hover:text-white px-8 py-2 text-sm">Confirm</button>
+                <form method="dialog" class="mt-5">
+                    <button class="ml-4 btn px-8 btn-ghost rounded-md">
+                        Cancel
+                    </button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+</form>

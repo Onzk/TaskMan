@@ -1,20 +1,18 @@
-from server import *
+from state import *
 from routes.task import *
 from routes.category import *
+from routes.sub_category import *
 from routes.error import *
+from kernel import *
 
 
 @app.route("/")
 def index():
-    if sub_status == "completed":
-        tasks = [task for task in task_list if task.completed]
-    elif sub_status == "remaining":
-        tasks = [task for task in task_list if not task.completed]
-    else:
-        tasks = task_list
-
+    tasks = apply_priority_type(sort_by)
+    tasks = apply_sub_status(sub_status, tasks=tasks)
     return render_template(
         "index.html",
+        default_tasks=[task for task in tasks if task.id.endswith("@")],
         tasks=tasks,
         categories=root.sub_categories,
         sub_status=sub_status,
@@ -35,13 +33,7 @@ def change_sort(sort: str = ""):
     sort_by = (
         sort
         if sort.lower()
-        in [
-            "default",
-            "upper_priority",
-            "lower_priority",
-            "closer_deadline",
-            "far_deadline",
-        ]
+        in "default upper_priority lower_priority closer_deadline far_deadline"
         else "default"
     )
     return redirect(request.referrer)

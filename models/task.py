@@ -4,9 +4,9 @@ import uuid
 class Task:
 
     priorityParser: list = [
-        ("VERY LOW", "primary"),
-        ("LOW", "info"),
-        ("NORMAL", "primary"),
+        ("VERY LOW", "info"),
+        ("LOW", "primary"),
+        ("NORMAL", "success"),
         ("HIGH", "warning"),
         ("CRITICAL", "error"),
     ]
@@ -17,10 +17,16 @@ class Task:
         deadline: str,
         priority: int = 1,
         completed: bool = False,
+        category: tuple = ("", ""),
     ) -> None:
-        self.__id = str(uuid.uuid4()).replace('-', '_')
+        self.__id = (
+            str(uuid.uuid4()).replace("-", "_")
+            + "@"
+            + str(category[0].strip())
+            + str(category[1].strip())
+        )
         self.description = description
-        self.deadline = deadline.replace('T', ' ')
+        self.deadline = deadline.replace("T", " ")
         self.priority = priority
         self.completed = completed
 
@@ -30,7 +36,7 @@ class Task:
 
     @id.setter
     def id(self, id: str) -> None:
-        raise Exception('Unable to change a task id.')
+        raise Exception("Unable to change a task id.")
 
     @property
     def description(self) -> str:
@@ -58,3 +64,6 @@ class Task:
 
     def parsePriority(self) -> tuple:
         return Task.priorityParser[self.__priority - 1]
+
+    def __lt__(self, other):
+        return self.priority < other.priority

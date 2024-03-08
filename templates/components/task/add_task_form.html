@@ -1,4 +1,6 @@
 <form action="/create-task" method="POST">
+    <input type="text" class="hidden" name="category" value="">
+    <input type="text" class="hidden" name="sub_category" value="">
     <dialog id="add_task_form" class="modal backdrop-blur-sm">
         <div class="modal-box bg-base-200/50 border-l-4 border-blue-500 rounded">
             <form method="dialog">
@@ -21,33 +23,13 @@
             </div>
             <label for="priority" class="text-gray-400 text-sm mb-4 leading-tight tracking-normal">Priority
                 level</label>
-            <div class="relative mb-5 mt-2">
-                <div class="grid w-full grid-cols-5 gap-2 rounded-md bg-base-100 p-2">
-                    <div>
-                        <input type="radio" name="priority" id="1" value="1" class="peer hidden" checked />
-                        <label for="1"
-                            class="block cursor-pointer select-none rounded-md p-1 text-center transition duration-250 peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">1</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="priority" id="2" value="2" class="peer hidden" />
-                        <label for="2"
-                            class="block cursor-pointer select-none rounded-md p-1 text-center transition duration-250 peer-checked:bg-green-500 peer-checked:font-bold peer-checked:text-white">2</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="priority" id="3" value="3" class="peer hidden" />
-                        <label for="3"
-                            class="block cursor-pointer select-none rounded-md p-1 text-center transition duration-250 peer-checked:bg-yellow-500 peer-checked:font-bold peer-checked:text-white">3</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="priority" id="4" value="4" class="peer hidden" />
-                        <label for="4"
-                            class="block cursor-pointer select-none rounded-md p-1 text-center transition duration-250 peer-checked:bg-orange-500 peer-checked:font-bold peer-checked:text-white">4</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="priority" id="5" value="5" class="peer hidden" />
-                        <label for="5"
-                            class="block cursor-pointer select-none rounded-md p-1 text-center transition duration-250 peer-checked:bg-red-500 peer-checked:font-bold peer-checked:text-white">5</label>
-                    </div>
+            <div class="relative mb-5 mt-2 input-bordered input">
+                <div class="w-full flex items-center justify-between pt-2.5 rounded-md bg-base-100">
+                    <input type="radio" value="1" name="priority" class="radio radio-info" checked /><span class="mr-4 font-bold">1</span>
+                    <input type="radio" value="2" name="priority" class="radio radio-primary" /><span class="mr-4 font-bold">2</span>
+                    <input type="radio" value="3" name="priority" class="radio radio-success" /><span class="mr-4 font-bold">3</span>
+                    <input type="radio" value="4" name="priority" class="radio radio-warning" /><span class="mr-4 font-bold">4</span>
+                    <input type="radio" value="5" name="priority" class="radio radio-error" /><span class="mr-4 font-bold">5</span>
                 </div>
             </div>
             <div class="flex items-center justify-start pt-5 w-full">

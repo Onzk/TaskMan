@@ -49,11 +49,13 @@
                         {% else %}
                         {% include 'components/category/default_category.html' %}
                         {% for category in categories %}
+                        {% with category = category %}
                         {% include 'components/category/category.html' %}
+                        {% endwith %}
                         {% endfor %}
                         {% endif %}
-                        {% include 'components/add_btn.html' %}
                     </div>
+                    {% include 'components/add_btn.html' %}
                 </div>
             </div>
         </div>

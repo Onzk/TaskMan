@@ -1,40 +1,40 @@
-<form action="/update-task/{{ task.id }}" method="POST">
-    <dialog id="edit{{ task.id }}task" class="modal backdrop-blur-sm">
+<form action="/create-task" method="POST">
+    <input type="text" class="hidden" name="category" value="{{ category.id }}">
+    <input type="text" class="hidden" name="sub_category" value="{{ sub_category.id }}">
+    <dialog id="add_sub_task_form{{ sub_category.id }}" class="modal backdrop-blur-sm">
         <div class="modal-box bg-base-200/50 border-l-4 border-blue-500 rounded">
             <form method="dialog">
                 <button class="btn hidden btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
-            <h3 class="font-bold text-lg mt-5 mb-8">Update task</h3>
+            <h3 class="font-bold text-lg mt-5 mb-8">New task</h3>
             <label for="description"
                 class="text-gray-400 text-sm mb-4 leading-tight tracking-normal">Description</label>
             <div class="relative mb-5 mt-2">
                 <label class="input input-bordered flex items-center gap-2">
-                    <input type="text" class="grow" name="description" value="{{ task.description }}"
-                        placeholder="What have you to do ?" required minlength="3" />
+                    <input type="text" class="grow" name="description" placeholder="What have you to do ?" required
+                        minlength="3" />
                 </label>
             </div>
             <label for="deadline" class="text-gray-400 text-sm leading-tight tracking-normal">Deadline</label>
             <div class="relative mb-5 mt-1">
                 <label class="input input-bordered flex items-center gap-2">
-                    <input type="datetime-local"
-                        value="{{ task.deadline.replace(' ', 'T') }}"
-                        class="grow" name="deadline" placeholder="MM/YY/DD H:M" required />
+                    <input type="datetime-local" class="grow" name="deadline" placeholder="MM/YY/DD H:M" required />
                 </label>
             </div>
             <label for="priority" class="text-gray-400 text-sm mb-4 leading-tight tracking-normal">Priority
                 level</label>
             <div class="relative mb-5 mt-2 input-bordered input">
                 <div class="w-full flex items-center justify-between pt-2.5 rounded-md bg-base-100">
-                    <input type="radio" value="1" name="priority" class="radio radio-info" {% if task.priority == 1 %}
-                        checked {% endif %} /><span class="mr-4 font-bold">1</span>
-                    <input type="radio" value="2" name="priority" class="radio radio-primary"
-                        {% if task.priority == 2 %} checked {% endif %} /><span class="mr-4 font-bold">2</span>
-                    <input type="radio" value="3" name="priority" class="radio radio-success"
-                        {% if task.priority == 3 %} checked {% endif %} /><span class="mr-4 font-bold">3</span>
-                    <input type="radio" value="4" name="priority" class="radio radio-warning"
-                        {% if task.priority == 4 %} checked {% endif %} /><span class="mr-4 font-bold">4</span>
-                    <input type="radio" value="5" name="priority" class="radio radio-error" {% if task.priority == 5 %}
-                        checked {% endif %} /><span class="mr-4 font-bold">5</span>
+                    <input type="radio" value="1" name="priority" class="radio radio-info" checked /><span
+                        class="mr-4 font-bold">1</span>
+                    <input type="radio" value="2" name="priority" class="radio radio-primary" /><span
+                        class="mr-4 font-bold">2</span>
+                    <input type="radio" value="3" name="priority" class="radio radio-success" /><span
+                        class="mr-4 font-bold">3</span>
+                    <input type="radio" value="4" name="priority" class="radio radio-warning" /><span
+                        class="mr-4 font-bold">4</span>
+                    <input type="radio" value="5" name="priority" class="radio radio-error" /><span
+                        class="mr-4 font-bold">5</span>
                 </div>
             </div>
             <div class="flex items-center justify-start pt-5 w-full">

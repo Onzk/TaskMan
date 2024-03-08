@@ -5,6 +5,8 @@
     <title>TaskMan</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/main-logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='styles/daysi.css') }}" />
     <script src="{{ url_for('static', filename='styles/tailwind.css') }}"></script>
 </head>
 
@@ -14,14 +16,14 @@
         <div class="w-full h-full text-center">
             <img src="{{ url_for('static', filename='assets/404.png') }}" class="h-3/4 mx-auto pt-16 text-center"
                 alt="">
-            <span class="text-sm text-slate-500">404 Not found!</span>
+            <span class="text-2xl text-slate-500">Aïe! 404 Not found!</span>
 
             <p class="text-xl text-slate-500">
                 <a href="/"
-                    class="mt-4 w-1/12 mx-auto rounded transition duration-300 py-3 bg-gradient-to-r hover:bg-gradient-to-l from-cyan-500 to-blue-500 transition duration-500 text-sm text-white font-mediumbg-gradient-to-r group cursor-pointer flex items-center">
+                    class="mt-4 h-16 w-1/12 mx-auto rounded transition duration-300 py-3 bg-gradient-to-r hover:bg-gradient-to-l from-cyan-500 to-blue-500 transition duration-500 text-white font-mediumbg-gradient-to-r group cursor-pointer flex items-center">
                     <span class="pl-5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-5 mr-4 stroke-white">
+                            stroke="currentColor" class="h-8 mr-4 stroke-white">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>

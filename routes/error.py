@@ -1,4 +1,4 @@
-from server import *
+from state import *
 
 
 @app.errorhandler(404)
