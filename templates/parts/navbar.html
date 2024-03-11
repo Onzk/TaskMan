@@ -1,4 +1,5 @@
-<div class="px-5 py-2 flex justify-between shadow-xl items-center rounded-md bg-gradient-to-r to-cyan-500 from-blue-500">
+<div
+    class="px-5 py-1 flex justify-between shadow-xl items-center rounded-box bg-gradient-to-br to-cyan-500 from-blue-500">
     <a href="/" class="flex items-center">
         <!-- <img src="{{ url_for('static', filename='assets/logo.png') }}"
             width="40" alt=""> -->
@@ -8,15 +9,17 @@
         </span>
     </a>
     <!-- search -->
-    <div class="w-1/2 relative rounded-lg bg-base-200 shadow-md focus:shadow-lg">
-        <label class="input input-bordered flex items-center gap-2">
-            <input type="text" class="grow" placeholder="Search" />
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
-                <path fill-rule="evenodd"
-                    d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                    clip-rule="evenodd" /></svg>
+    <form action="/search" method="POST" class="w-1/2 text-white relative rounded-box bg-base-200 shadow-md m-0 focus:shadow-lg">
+        <label class="input input-bordered rounded-box flex items-center pr-0">
+            <input type="text" class="grow rounded-box" placeholder="Search" name="search" value="{{ search }}"/>
+            <button type="submit" class="btn btn-ghost border-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
+                    <path fill-rule="evenodd"
+                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                        clip-rule="evenodd" /></svg>
+            </button>
         </label>
-    </div>
+    </form>
     <!-- sorter -->
     <div class="relative inline-block text-left">
         {% include 'components/sorter.html' %}

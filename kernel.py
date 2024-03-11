@@ -1,6 +1,8 @@
 import copy
 from state import *
 
+def apply_search(tasks:list, search:str) -> list:
+    return [task for task in tasks if task.matches(search)]
 
 def apply_priority_type(sort_by: str) -> list:
     if sort_by == "default":

@@ -75,3 +75,6 @@ class Task:
     
     def remaining_time(self) -> float :
         return max(datetime.datetime.now().timestamp - self.timestamp(), 0)
+    
+    def matches(self, search:str) -> bool:
+        return search.lower() in f"{self.description} {self.deadline}".lower()

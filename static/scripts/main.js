@@ -1,12 +1,19 @@
-const drawer = document.getElementById("drawer-label");
+const toats = document.getElementsByClassName("toast")
+history.scrollRestoration = "auto";
+
+console.log(history.scrollRestoration)
+
+Array.from(toats).map((value, index, toats) => {
+    setTimeout(() => value.classList.add('fade-out'), 3000)
+    setTimeout(() => value.classList.add('hidden'), 3500)
+});
+// Array.prototype.map()
+
 const innerPage = document.getElementById("inner-page");
 
 function goToId(id) {
-    // drawer.click()
     scrollToElm(innerPage, document.getElementById(id), 600);
 }
-
-/////////////
 
 function scrollToElm(container, elm, duration) {
     var pos = getRelativePos(elm);

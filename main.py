@@ -10,6 +10,7 @@ from kernel import *
 def index():
     tasks = apply_priority_type(sort_by)
     tasks = apply_sub_status(sub_status, tasks=tasks)
+    tasks = apply_search(tasks, search=search)
     # tasks = [task for task in tasks if task is not None]
     return render_template(
         "index.html",
@@ -18,6 +19,7 @@ def index():
         categories=root.sub_categories,
         sub_status=sub_status,
         sort=sort_by,
+        search=search,
     )
 
 
@@ -25,6 +27,12 @@ def index():
 def change_sub_status(status: str = ""):
     global sub_status
     sub_status = status if status.lower() in ["completed", "remaining"] else "all"
+    return redirect(request.referrer)
+
+@app.route("/search",  methods=["POST"])
+def set_search():
+    global search
+    search = request.form["search"]
     return redirect(request.referrer)
 
 

@@ -38,7 +38,7 @@ def updateTask(id: str):
             task_list[i].deadline = request.form["deadline"]
             break
     flash("Task updated successfully !")
-    return redirect("/")
+    return redirect("/#")
 
 
 # Done

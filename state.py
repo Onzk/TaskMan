@@ -14,6 +14,8 @@ task_list, task_file, task_stack = [], TaskQueue(), TaskStack()
 
 sub_status = "all"
 
-sort_by = "by_deadline"
+sort_by = "default"
+
+search = ""
 
 root = Category("root")

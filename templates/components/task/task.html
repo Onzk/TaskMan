@@ -1,17 +1,18 @@
-<div class="flex justify-between items-start mb-0">
-    <form action="/toggle-task-state/{{ task.id }}" class="mt-0 btn" method="POST">
+<div class="flex justify-between items-start mb-0" id="task{{ task.id }}">
+    <form action="/toggle-task-state/{{ task.id }}" class="mt-0 mb-0.5 btn" method="POST">
         <input type="checkbox" id="{{ task.id }}" onchange="this.form.submit()" {% if task.completed %} checked
             {% endif %} class="checkbox checkbox-success" />
     </form>
     <div
-        class="form-control w-full p-0.5 pt-0 bg-base-200/90 hover:bg-black/50 ml-2 transition-all duration-500 pl-3 rounded-md">
-        <label class="cursor-pointer label justify-start py-0" for="{{ task.id }}">
+        class="form-control w-full p-0.5 pt-0 bg-base-200/90 hover:bg-black/50 transition-all duration-500 pl-3 pr-0 rounded-md">
+        <label class="cursor-pointer label justify-start py-0 fade-in" for="{{ task.id }}">
             <div class="label justify-between w-full">
                 <span {% if task.completed %} class="mx-1 line-through text-xl w-9/12" {% else %}
                     class="mx-1 text-xl w-9/12" {% endif %}>{{ task.description }}</span>
                 <span class="mx-4 text-xs flex flex-none">
-                    <div class="badge badge-ghost rounded p-3 mr-3">{{ task.deadline }}</div>
-                    <div class="badge w-32 text-{{ task.parsePriority()[1] }} rounded p-3">
+                    <div class="badge badge-ghost rounded p-3 mr-3 {% if task.completed %} line-through {% endif %}">
+                        {{ task.deadline }}</div>
+                    <div class="badge w-32 text-{{ task.parsePriority()[1] }} rounded p-3 {% if task.completed %} line-through {% endif %}">
                         {{ task.parsePriority()[0] }}
                     </div>
                 </span>
