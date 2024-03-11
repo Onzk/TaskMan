@@ -1,15 +1,8 @@
+import datetime
 import uuid
 
 
 class Task:
-
-    priorityParser: list = [
-        ("VERY LOW", "info"),
-        ("LOW", "primary"),
-        ("NORMAL", "success"),
-        ("HIGH", "warning"),
-        ("CRITICAL", "error"),
-    ]
 
     def __init__(
         self,
@@ -29,6 +22,7 @@ class Task:
         self.deadline = deadline.replace("T", " ")
         self.priority = priority
         self.completed = completed
+        self.comp_by_priority = True
 
     @property
     def id(self) -> str:
@@ -60,10 +54,24 @@ class Task:
 
     @priority.setter
     def priority(self, priority: int) -> None:
-        self.__priority = min(max(priority, 1), 5)
+        self.__priority = priority
 
     def parsePriority(self) -> tuple:
-        return Task.priorityParser[self.__priority - 1]
+        return [
+            ("VERY LOW", "info"),
+            ("LOW", "primary"),
+            ("NORMAL", "success"),
+            ("HIGH", "warning"),
+            ("CRITICAL", "error"),
+        ][self.__priority - 1]
 
     def __lt__(self, other):
-        return self.priority < other.priority
+        if self.comp_by_priority :
+            return self.priority <= other.priority
+        return self.remaining_time() <= other.remaining_time()
+
+    def timestamp(self) -> float:
+        return datetime.datetime.strptime(self.deadline, "%Y-%m-%d %H:%M").timestamp()
+    
+    def remaining_time(self) -> float :
+        return max(datetime.datetime.now().timestamp - self.timestamp(), 0)

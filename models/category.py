@@ -28,6 +28,9 @@ class Category:
     def filterTasks(self, tasks:list) -> list:
         return [task for task in tasks if task.id.endswith(self.id)]
 
+    def containsTasks(self, tasks:list) -> list:
+        return [task for task in tasks if self.id in task.id]
+
     @property
     def sub_categories(self) -> list:
         return self.__sub_categories

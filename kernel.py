@@ -6,11 +6,10 @@ def apply_priority_type(sort_by: str) -> list:
     if sort_by == "default":
         return task_list
     if "deadline" in sort_by:
-        [task_file.put(_) for _ in task_list]
-        return [task_file.get(False) for _ in task_list]
+        return task_file.to_list()
     if "priority" in sort_by:
-        [task_stack.put(_) for _ in task_list]
-        stack = [task_stack.get(False) for _ in task_list]
+        _stack = copy.deepcopy(task_stack)
+        stack = [_stack.pop() for _ in range(len(_stack.queue))]
         if "upper" in sort_by:
             stack.reverse()
         return stack

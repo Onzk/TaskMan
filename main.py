@@ -10,6 +10,7 @@ from kernel import *
 def index():
     tasks = apply_priority_type(sort_by)
     tasks = apply_sub_status(sub_status, tasks=tasks)
+    # tasks = [task for task in tasks if task is not None]
     return render_template(
         "index.html",
         default_tasks=[task for task in tasks if task.id.endswith("@")],
@@ -33,7 +34,7 @@ def change_sort(sort: str = ""):
     sort_by = (
         sort
         if sort.lower()
-        in "default upper_priority lower_priority closer_deadline far_deadline"
+        in "default upper_priority lower_priority by_deadline"
         else "default"
     )
     return redirect(request.referrer)

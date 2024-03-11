@@ -30,19 +30,12 @@
             {% endif %} role="menuitem">
             Lower priority
         </a>
-        <a href="/sort/closer_deadline" {% if sort=="closer_deadline" %}
+        <a href="/sort/by_deadline" {% if sort=="by_deadline" %}
             class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-300 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
             {% else %}
             class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-300 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
             {% endif %} role="menuitem">
             Closer deadline
-        </a>
-        <a href="/sort/far_deadline" {% if sort=="far_deadline" %}
-            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-300 bg-gradient-to-r to-cyan-500 from-blue-500 text-white cursor-pointer"
-            {% else %}
-            class="flex mb-1 block rounded-md px-4 py-2 text-sm text-gray-300 hover:bg-gradient-to-r hover:to-cyan-500 hover:from-blue-500 hover:text-white cursor-pointer"
-            {% endif %} role="menuitem">
-            Far deadline
         </a>
     </div>
 </div>

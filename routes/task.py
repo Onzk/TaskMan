@@ -1,13 +1,13 @@
 from state import *
 
+task_list.append(Task("Start Grafana server", "2024-02-08 20:33", 1))
 task_list.append(Task("Start Influx DB server", "2024-02-08 10:33", 4))
-# task_list.append(Task("Start Grafana server", "2024-02-08 20:33", 5))
-# task_list.append(Task("Reload Telegraf monitoring system", "2024-03-08 06:33", 5))
-# task_list.append(
-#     Task("Enter Elixir Notification Service under maintenace", "2024-02-12 15:00", 3)
-# )
-# [task_stack.put(_) for _ in task_list]
-
+task_list.append(Task("Reload Telegraf monitoring system", "2024-03-08 06:33", 1))
+task_list.append(
+    Task("Enter Elixir Notification Service under maintenace", "2024-02-12 15:00", 3)
+)
+[task_stack.push(_) for _ in task_list]
+[task_file.push(_) for _ in task_list]
 
 # Done
 @app.route("/create-task", methods=["POST"])
@@ -23,7 +23,8 @@ def createTask():
         category=category,
     )
     task_list.append(task)
-    # task_stack.put(task)
+    task_stack.push(task)
+    task_file.push(task)
     flash("Task created successfully !")
     return redirect("/")
 
@@ -54,7 +55,11 @@ def toggleTaskState(id: str):
 
 @app.route("/delete-task/<id>", methods=["POST"])
 def deleteTask(id: str):
-    [task_list.remove(task) for task in task_list if task.id == id]
-
+    for task in task_list:
+        if task.id == id:
+            task_list.remove(task)
+            task_file.queue.queue.remove(task)
+            task_stack.queue.remove(task)
+            break
     flash("Task deleted successfully !")
     return redirect("/")
