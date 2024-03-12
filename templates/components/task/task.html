@@ -1,17 +1,23 @@
 <div class="flex justify-between items-start mb-0" id="task{{ task.id }}">
-    <form action="/toggle-task-state/{{ task.id }}" class="mt-0 mb-0.5 btn" method="POST">
+    <form action="/toggle-task-state/{{ task.id }}" class="mt-0 mb-0 mr-2 btn" method="POST">
         <input type="checkbox" id="{{ task.id }}" onchange="this.form.submit()" {% if task.completed %} checked
             {% endif %} class="checkbox checkbox-success" />
     </form>
     <div
-        class="form-control w-full p-0.5 pt-0 bg-base-200/90 hover:bg-black/50 transition-all duration-500 pl-3 pr-0 rounded-md">
+        class="form-control w-full p-0.5 pt-0 bg-base-200/90 mt-0.5 hover:bg-black/50 transition-all duration-500 pl-3 pr-0 rounded-md">
         <label class="cursor-pointer label justify-start py-0 fade-in" for="{{ task.id }}">
             <div class="label justify-between w-full">
                 <span {% if task.completed %} class="mx-1 line-through text-xl w-9/12" {% else %}
                     class="mx-1 text-xl w-9/12" {% endif %}>{{ task.description }}</span>
                 <span class="mx-4 text-xs flex flex-none">
+                    {% if not task.completed and task.remaining_time() == 0 %}
+                    <div class="badge badge-error rounded p-3 mr-3 animate-pulse">
+                        Deadline exceeded
+                    </div>
+                    {% endif %}
                     <div class="badge badge-ghost rounded p-3 mr-3 {% if task.completed %} line-through {% endif %}">
-                        {{ task.deadline }}</div>
+                        {{ task.deadline }}
+                    </div>
                     <div class="badge w-32 text-{{ task.parsePriority()[1] }} rounded p-3 {% if task.completed %} line-through {% endif %}">
                         {{ task.parsePriority()[0] }}
                     </div>
@@ -20,7 +26,7 @@
         </label>
     </div>
     <div class="dropdown dropdown-left">
-        <div tabindex="0" class="text text-info btn py-0 h-full mx-3">
+        <div tabindex="0" class="text text-info btn py-0 h-full mx-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"

@@ -1,7 +1,11 @@
-const toats = document.getElementsByClassName("toast")
-history.scrollRestoration = "auto";
+// document.addEventListener("DOMContentLoaded", function(){
+//     var href = document.location.href 
+//     if(href.includes('#')){
+//         var id = href.split('@')
+//     }
+// })
 
-console.log(history.scrollRestoration)
+const toats = document.getElementsByClassName("toast")
 
 Array.from(toats).map((value, index, toats) => {
     setTimeout(() => value.classList.add('fade-out'), 3000)
@@ -9,10 +13,26 @@ Array.from(toats).map((value, index, toats) => {
 });
 // Array.prototype.map()
 
-const innerPage = document.getElementById("inner-page");
+let innerPage = document.getElementById("inner-page");
+let lastTop = localStorage.getItem("lastTop");
+if (innerPage !== null) {
+    if (lastTop === null) {
+        setLastTop(0);
+    } else {
+        innerPage.scrollTo(0, lastTop)
+    }
 
-function goToId(id) {
-    scrollToElm(innerPage, document.getElementById(id), 600);
+    innerPage.addEventListener('scroll', function () {
+        setLastTop(innerPage.scrollTop)
+    })
+
+    function setLastTop(lastTop) {
+        localStorage.setItem("lastTop", lastTop);
+    }
+
+    function goToId(id) {
+        scrollToElm(innerPage, document.getElementById(id), 600);
+    }
 }
 
 function scrollToElm(container, elm, duration) {

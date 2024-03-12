@@ -1,6 +1,7 @@
 <div class="w-full flex items-start justify-start fade-in" id="sub_category{{ sub_category.id }}">
     <div class="dropdown dropdown-right">
-        <div tabindex="0" class="text text-info btn h-full mx-3 hover:shadow-xl border border-transparent border-blue-500/20 hover:border-blue-500/20 focus:border-blue-500/20">
+        <div tabindex="0"
+            class="text text-info btn h-full mr-3 hover:shadow-xl border border-transparent border-blue-500/20 hover:border-blue-500/20 focus:border-blue-500/20">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -35,12 +36,30 @@
             </div>
         </div>
     </div>
-    <div class="collapse collapse-arrow bg-base-200/20 hover:shadow-xl border border-transparent hover:border-blue-500/20 rounded-md transition duration-500">
+    <div
+        class="collapse collapse-arrow bg-base-200/20 hover:shadow-xl border border-transparent hover:border-blue-500/20 rounded-md transition duration-500">
+        {% with rate = sub_category.complationRate(tasks) %}
         <input type="checkbox" checked />
         <div class="collapse-title flex justify-between items-center text-xl font-medium">
-            {{ sub_category.description }}
+            <div class="flex justify-start text-white items-center space-x-2">
+                {% if rate == 100 %}
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-6 h-6 ml-4 mr-6 text-success">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                </svg>
+                {% else %}
+                {% include 'components/radial_progress.html' %}
+                {% endif %}
+                {{ sub_category.description }}
+                {% if rate >= 100 %}
+                <span class="badge badge-success shadow-md shadow-green-900">Completed</span>
+                {% endif %}
+            </div>
+            {% endwith %}
             {% include "components/category/add_sub_task_form.html" %}
-            <button onclick="window['add_sub_task_form{{ sub_category.id }}'].showModal()" class="z-[50] btn btn-ghost btn-xs p-1">
+            <button onclick="window['add_sub_task_form{{ sub_category.id }}'].showModal()"
+                class="z-[50] btn btn-ghost btn-xs p-1">
                 <span class="mb-0.5">+</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" class="stroke-blue-400 w-4 h-4">
@@ -49,11 +68,11 @@
                 </svg>
             </button>
         </div>
-        <div class="collapse-content">
+        <div class="collapse-content space-y-2">
             {% with tasks=sub_category.filterTasks(tasks) %}
             {% if tasks == [] %}
-            <span class="text-sm">
-                🎉 No task found 🎉
+            <span class="text-sm ml-16">
+                🎉 no task found 🎉
             </span>
             {% else %}
             {% for task in tasks %}

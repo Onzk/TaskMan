@@ -1,8 +1,8 @@
 import uuid
 
 class Category:
-    def __init__(self, description: str, sub_categories=[]):
-        self.__id = str(uuid.uuid4()).replace("-", "_")
+    def __init__(self, description: str, sub_categories=[], id:str = None):
+        self.__id = str(uuid.uuid4()).replace("-", "_") if id == None else id
         self.description = description
         self.sub_categories = sub_categories
 
@@ -31,6 +31,10 @@ class Category:
     def containsTasks(self, tasks:list) -> list:
         return [task for task in tasks if self.id in task.id]
 
+    def complationRate(self, tasks:list) -> float:
+        completed = [task for task in tasks if self.id in task.id and task.completed]
+        return round((len(completed) / max(1, len(self.containsTasks(tasks)))) * 100)
+
     @property
     def sub_categories(self) -> list:
         return self.__sub_categories
@@ -38,9 +42,4 @@ class Category:
     @sub_categories.setter
     def sub_categories(self, sub_categories: list) -> None:
         self.__sub_categories = sub_categories.copy()
-
-    # def __str__(self, level=0):
-    #     ret = "  " * level + str(self.tasks) + "\n"
-    #     for child in self.sub_categories:
-    #         ret += child.__str__(level + 1)
-    #     return ret
+    

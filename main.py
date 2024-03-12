@@ -11,10 +11,8 @@ def index():
     tasks = apply_priority_type(sort_by)
     tasks = apply_sub_status(sub_status, tasks=tasks)
     tasks = apply_search(tasks, search=search)
-    # tasks = [task for task in tasks if task is not None]
     return render_template(
         "index.html",
-        default_tasks=[task for task in tasks if task.id.endswith("@")],
         tasks=tasks,
         categories=root.sub_categories,
         sub_status=sub_status,

@@ -1,3 +1,6 @@
+#inner-page {
+    scroll-behavior: smooth;
+}
 
 .fade-out {
     animation: fadeOut ease 1s;

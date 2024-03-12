@@ -1,0 +1,7 @@
+<div {% if rate <= 33 %} class="radial-progress text-xs mx-4 text-error"  {% elif rate <= 66 %}
+    class="radial-progress text-xs mx-4 text-warning" {% else %} class="radial-progress text-xs mx-4 text-success"
+    {% endif %} style="--value:{{ rate }};--size:2rem;" role="progressbar">
+    <span class="text-xs scale-[75%]">
+        {{ rate }}%
+    </span>
+</div>

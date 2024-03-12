@@ -14,7 +14,6 @@ class Task:
     ) -> None:
         self.__id = (
             str(uuid.uuid4()).replace("-", "_")
-            + "@"
             + str(category[0].strip())
             + str(category[1].strip())
         )
@@ -74,7 +73,7 @@ class Task:
         return datetime.datetime.strptime(self.deadline, "%Y-%m-%d %H:%M").timestamp()
     
     def remaining_time(self) -> float :
-        return max(datetime.datetime.now().timestamp - self.timestamp(), 0)
+        return max(self.timestamp() - datetime.datetime.now().timestamp(), 0)
     
     def matches(self, search:str) -> bool:
         return search.lower() in f"{self.description} {self.deadline}".lower()

@@ -1,6 +1,6 @@
 from state import *
 
-root.addChild(Category("Crontab deploiement"))
+# root.addChild(Category("Crontab deploiement"))
 
 
 @app.route("/add-category", methods=["POST"])

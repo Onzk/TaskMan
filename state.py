@@ -19,3 +19,5 @@ sort_by = "default"
 search = ""
 
 root = Category("root")
+
+root.addChild(Category("To-Do", [], "@"))

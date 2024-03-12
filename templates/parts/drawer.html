@@ -1,9 +1,11 @@
 <div class="drawer-side z-[190]">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class="">
+    <div class="backdrop-blur-md">
         <ul
-            class="menu rounded-md min-h-full rounded-none border-r-4 border-blue-500 p-4 w-80 bg-base-200 backdrop-blur-sm text-base-content">
+            class="menu rounded-md min-h-full rounded-none border-r-4 border-blue-500 p-4 min-w-80 max-w-96 bg-base-200/90 text-base-content">
             <p class="font-bold mb-4 ml-4 text-xl">Categories tree</p>
+            {% for category in categories %}
+            {% if category.id == "@" %}
             <li>
                 <label for="my-drawer" class="flex pr-1 justify-between items-center" onclick="goToId('todo')">
                     <span class="flex justify-start items-center">
@@ -17,14 +19,14 @@
                     <div class="badge text-blue-400 rounded">{{ default_tasks.__len__() }}</div>
                 </label>
             </li>
-            {% for category in categories %}
+            {% else %}
             <li>
                 <details open>
                     <summary>
                         <label for="my-drawer" class="flex justify-between items-start"
                             onclick="goToId('category{{ category.id }}')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-5 h-5 flex-none mr-1">
+                                stroke="currentColor" class="w-5 h-5 flex-none mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
                             </svg>
@@ -54,6 +56,7 @@
                     </ul>
                 </details>
             </li>
+            {% endif %}
             {% endfor %}
         </ul>
         <!-- <ul class="">
