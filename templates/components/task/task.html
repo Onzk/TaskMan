@@ -10,15 +10,38 @@
                 <span {% if task.completed %} class="mx-1 line-through text-xl w-9/12" {% else %}
                     class="mx-1 text-xl w-9/12" {% endif %}>{{ task.description }}</span>
                 <span class="mx-4 text-xs flex flex-none">
-                    {% if not task.completed and task.remaining_time() == 0 %}
-                    <div class="badge badge-error rounded p-3 mr-3 animate-pulse">
-                        Deadline exceeded
+                    {% if not task.completed %}
+                    {% if task.remaining_time() == 0  %}
+                    <div class="tooltip tooltip-error tooltip-left mr-3" data-tip="Deadline exceeded">
+                        <div class="badge badge-error rounded px-1 py-3 animate-pulse"
+                            onmouseover="this.classList.toggle('animate-pulse')"
+                            onmouseout="this.classList.toggle('animate-pulse')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
                     </div>
+                    {% elif task.remaining_time() <= 30 * 60 %}
+                    <div class="tooltip tooltip-warning tooltip-left mr-3" data-tip="Little time left">
+                        <div class="badge badge-warning rounded px-1 py-3 animate-pulse"
+                            onmouseover="this.classList.toggle('animate-pulse')"
+                            onmouseout="this.classList.toggle('animate-pulse')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                            </svg>
+                        </div>
+                    </div>
+                    {% endif %}
                     {% endif %}
                     <div class="badge badge-ghost rounded p-3 mr-3 {% if task.completed %} line-through {% endif %}">
                         {{ task.deadline }}
                     </div>
-                    <div class="badge w-32 text-{{ task.parsePriority()[1] }} rounded p-3 {% if task.completed %} line-through {% endif %}">
+                    <div
+                        class="badge w-32 text-{{ task.parsePriority()[1] }} rounded p-3 {% if task.completed %} line-through {% endif %}">
                         {{ task.parsePriority()[0] }}
                     </div>
                 </span>

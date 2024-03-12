@@ -32,8 +32,11 @@ class Category:
         return [task for task in tasks if self.id in task.id]
 
     def complationRate(self, tasks:list) -> float:
+        Category_tasks = self.containsTasks(tasks)
+        if len(Category_tasks) == 0:
+            return 100
         completed = [task for task in tasks if self.id in task.id and task.completed]
-        return round((len(completed) / max(1, len(self.containsTasks(tasks)))) * 100)
+        return round((len(completed) / len(Category_tasks)) * 100)
 
     @property
     def sub_categories(self) -> list:

@@ -16,7 +16,7 @@
                         </svg>
                         To-Do
                     </span>
-                    <div class="badge text-blue-400 rounded">{{ default_tasks.__len__() }}</div>
+                    <div class="badge text-blue-400 rounded">{{ category.containsTasks(tasks).__len__() }}</div>
                 </label>
             </li>
             {% else %}
