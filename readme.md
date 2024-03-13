@@ -1,6 +1,6 @@
 # Taskman : Système de gestion de tâches
 <span style="font-size:46px;">T</span>
-<img src="https://raw.githubusercontent.com/Onzk/TaskMan/master/static/assets/main-logo.png" width="25" style="margin-top:2rem" /> <span style="font-size:46px;">skman</span>
+<img src="https://raw.githubusercontent.com/Onzk/TaskMan/master/static/assets/main-logo.png" width="10" style="margin-top:2rem" /> <span style="font-size:46px;">skman</span>
 
 [![pyversions](https://img.shields.io/pypi/pyversions/scrapy-playwright.svg)](https://pypi.python.org/pypi/scrapy-playwright)
 
