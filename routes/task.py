@@ -112,7 +112,7 @@ def deleteTask(id: str): # Complexité temporelle totale : O(n**2)
             # On supprime la tâche de la file
             task_file.queue.queue.remove(task) # O(n)
             # On supprime la tâche de la pile
-            task_stack.queue.remove(task) # O(n)
+            task_stack.stack.remove(task) # O(n)
             # On sort de la boucle
             break # O(1)
     # On charge un message de confirmation
