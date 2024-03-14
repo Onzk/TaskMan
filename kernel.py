@@ -50,7 +50,7 @@ def apply_priority_type(
         _stack = copy.deepcopy(task_stack)  # O(n)
         # On crée une liste à partir des tâches
         # de celle-ci
-        stack = [_stack.pop() for _ in range(len(_stack.queue))]  # O(nlog n)
+        stack = [_stack.pop() for _ in range(len(_stack.stack))]  # O(nlog n)
         # Si on veut les tâches ayant les plus grandes
         # priorité en premier
         if "upper" in sort_by:  # O(1)

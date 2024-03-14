@@ -6,7 +6,10 @@
             <form method="dialog">
                 <button class="btn hidden btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
-            <h3 class="font-bold text-lg mt-5 mb-8">New task</h3>
+            <h3 class="font-bold text-lg mt-5 mb-8">
+                New task in <span class="badge badge-info">{{ sub_category.description }}</span>
+                sub category
+            </h3>
             <label for="description"
                 class="text-gray-400 text-sm mb-4 leading-tight tracking-normal">Description</label>
             <div class="relative mb-5 mt-2">

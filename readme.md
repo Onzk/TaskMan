@@ -26,9 +26,9 @@ Parcours : Cybersécurité - Année préparatoire
 Année scolaire : 2023-2024 
 
 Etudiants :
-    - KOUDOSSOU Messan Dhani Justin (chef de groupe)
-    - ASSIGNON Akofala Bénédicta
-    - d'ALMEIDA Ayité Juste Mawugnon
+- KOUDOSSOU Messan Dhani Justin (chef de groupe)
+- ASSIGNON Akofala Bénédicta
+- d'ALMEIDA Ayité Juste Mawugnon
 
 
 ## Système
