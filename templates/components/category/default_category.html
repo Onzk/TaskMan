@@ -1,3 +1,7 @@
+{% with tasks = category.filterTasks(tasks) %}
+{% if tasks == [] %}
+<div></div>
+{% else %}
 <div class="px-3 mb-3 flex items-start justify-start" id="todo">
     <div tabindex="0" class="text text-info btn h-full mx-3">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -25,9 +29,7 @@
             <span class="badge badge-success shadow-md shadow-green-900">Completed</span>
             {% endif %}
         </div>
-        {% endwith %}
         <div class="collapse-content space-y-2">
-            {% with tasks = category.filterTasks(tasks) %}
             {% if tasks == [] %}
             <span class="text-sm ml-16">
                 🎉 no task found 🎉
@@ -43,3 +45,5 @@
         </div>
     </div>
 </div>
+{% endif %}
+{% endwith %}

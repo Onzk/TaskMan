@@ -2,7 +2,7 @@
 <html id="main" class="overflow-hidden" data-theme="dark">
 
 <head>
-    <title>TaskMan</title>
+    <title>Taskman</title>
     <link rel="icon" type="image/x-icon"
         href="{{ url_for('static', filename='assets/main-logo.png') }}">
     <link rel="stylesheet"
@@ -40,7 +40,7 @@
                         {% include 'parts/drawer.html' %}
                     </div>
                     <div class="h-full w-full pt-3" id="inner-page" style="overflow-y: scroll;">
-                        {% if tasks == [] and categories.__len__() == 1 %}
+                        {% if tasks == [] and (categories.__len__() == 1 or sub_status != "all") %}
                         <div class="w-full h-full text-center pt-32 fade-in">
                             <img src="{{ url_for('static', filename='assets/empty.png') }}"
                                 class="h-2/4 mx-auto text-center mb-8" alt="">
