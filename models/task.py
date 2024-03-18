@@ -77,10 +77,19 @@ class Task:
         # Si on fait une comparaison par priorité
         if self.comp_by_priority: # O(1)
             # On compare par priorité
-            return self.priority <= other.priority # O(1)
+            return self.priority < other.priority # O(1)
+        # Sinon, on récupère le temps restant avant 
+        # l'arrivée de la date limite
+        remaining: float = self.remaining_time()
+        # Si elle est égale à 0, c'est que la date limite
+        # est dépassé
+        if remaining == 0:
+            # Donc on le considère comme n'étant plus proche
+            # en prioirité
+            return False
         # Sinon, on compare par rapport au temps restant avant
-        # la fin de la date limite
-        return self.remaining_time() >= other.remaining_time() # O(1)
+        # la fin de la date limite des deux objets
+        return remaining < other.remaining_time() # O(1)
 
     def timestamp(self) -> float: # Complexité temporelle totale : O(1)
         """Convertit la date limite en secondes.

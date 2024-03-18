@@ -22,14 +22,14 @@ def page_not_found(e): # Complexité temporelle totale : O(1)
 
 
 @app.errorhandler(500)
-def page_not_found(e): # Complexité temporelle totale : O(1)
+def server_error_page(e): # Complexité temporelle totale : O(1)
     """Gère les erreurs 500.
 
     Args:
         e (Exception): l'erreur qui est survenue
 
     Returns:
-        Any  redirige vers la page 500
+        Any: redirige vers la page 500
     """
     # Redirige vers la page 500
     return render_template("./errors/500.html"), 500 # O(1)
